@@ -18,6 +18,8 @@ const PageMap = {
       }
     };
 
+    let resizeObserver = null;
+
     Vue.onMounted(() => {
       Vue.nextTick(() => {
         if (!window.L) {
@@ -27,6 +29,12 @@ const PageMap = {
 
         const container = document.getElementById('aqua-map');
         if (!container || map) return;
+
+        // Re-render the map when the drawer opens/closes (container resizes)
+        resizeObserver = new ResizeObserver(() => {
+          if (map) map.invalidateSize();
+        });
+        resizeObserver.observe(container);
 
         const terrain = window.L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
           attribution: '&copy; Google Maps',
@@ -67,6 +75,10 @@ const PageMap = {
     });
 
     Vue.onBeforeUnmount(() => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+        resizeObserver = null;
+      }
       if (map) {
         map.remove();
         map = null;
