@@ -23,10 +23,22 @@ const PageHome = {
 
                 <div class="ref-section-title">{{ L.coords }}</div>
                 <div class="ref-grid">
-                  <q-input v-model="form.pointA" :label="L.pointA" :hint="L.latlng" outlined bg-color="white" />
-                  <q-input v-model="form.pointB" :label="L.pointB" :hint="L.latlng" outlined bg-color="white" />
-                  <q-input v-model="form.pointC" :label="L.pointC" :hint="L.latlng" outlined bg-color="white" />
-                  <q-input v-model="form.pointD" :label="L.pointD" :hint="L.latlng" outlined bg-color="white" />
+                  <div>
+                    <div class="ref-label-sm">{{ L.latlng }}</div>
+                    <q-input v-model="form.pointA" :label="L.pointA" outlined bg-color="white" />
+                  </div>
+                  <div>
+                    <div class="ref-label-sm">{{ L.latlng }}</div>
+                    <q-input v-model="form.pointB" :label="L.pointB" outlined bg-color="white" />
+                  </div>
+                  <div>
+                    <div class="ref-label-sm">{{ L.latlng }}</div>
+                    <q-input v-model="form.pointC" :label="L.pointC" outlined bg-color="white" />
+                  </div>
+                  <div>
+                    <div class="ref-label-sm">{{ L.latlng }}</div>
+                    <q-input v-model="form.pointD" :label="L.pointD" outlined bg-color="white" />
+                  </div>
                 </div>
 
                 <div class="ref-grid q-mt-md">
