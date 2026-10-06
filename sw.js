@@ -1,5 +1,5 @@
 // Aqua service worker: caches app shell, Leaflet assets and Google map tiles
-const CACHE_NAME = 'aqua-v1';
+const CACHE_NAME = 'aqua-v2';
 const PRECACHE_URLS = [
   './',
   './index.html',
@@ -89,17 +89,36 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || !isCacheable(url)) return;
 
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request)
-        .then((response) => {
-          if (response && (response.ok || response.type === 'opaque')) {
+    (async () => {
+      const sameOrigin = url.startsWith(self.location.origin);
+      if (sameOrigin) {
+        // Network-first so updates are picked up; fall back to cache offline
+        try {
+          const response = await fetch(event.request);
+          if (response && response.ok) {
             const clone = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
           return response;
-        })
-        .catch(() => cached);
-    })
+        } catch {
+          const cached = await caches.match(event.request);
+          if (cached) return cached;
+          throw new Error('Offline and not cached');
+        }
+      }
+      // Cache-first for map tiles / CDN assets
+      const cached = await caches.match(event.request);
+      if (cached) return cached;
+      try {
+        const response = await fetch(event.request);
+        if (response && (response.ok || response.type === 'opaque')) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return response;
+      } catch {
+        return cached;
+      }
+    })()
   );
 });

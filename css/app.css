@@ -99,3 +99,189 @@ body {
 .leaflet-control-layers-expanded {
   border-radius: 8px;
 }
+
+        .ref-form {
+          direction: rtl;
+          font-family: 'Cairo', sans-serif;
+          max-width: 560px;
+          margin: 0 auto;
+          padding: 16px;
+          color: #2f3b4c;
+        }
+        .ref-title {
+          text-align: right;
+          font-size: 18px;
+          margin: 8px 0 12px;
+        }
+        .ref-card {
+          background: #e9e9e9;
+          border-radius: 14px;
+          padding: 18px 16px;
+        }
+        .ref-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .ref-input {
+          background: #fff;
+          border: 1px solid #e3e3e3;
+          border-radius: 10px;
+          padding: 14px 16px;
+          font-size: 16px;
+          text-align: right;
+          color: #2f3b4c;
+          width: 100%;
+          box-sizing: border-box;
+          appearance: none;
+        }
+        .ref-input::placeholder {
+          color: #9aa3ad;
+        }
+        .ref-select-wrap {
+          position: relative;
+        }
+        .ref-select-wrap::after {
+          content: '▼';
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #2f3b4c;
+          font-size: 10px;
+          pointer-events: none;
+        }
+        .ref-radios {
+          display: flex;
+          justify-content: center;
+          gap: 48px;
+          margin: 20px 0;
+          font-size: 17px;
+        }
+        .ref-radios label {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+        }
+        .ref-dot {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          border: 2px solid #c7cdd4;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+          box-sizing: border-box;
+        }
+        .ref-dot.active {
+          border: 8px solid #2f3b4c;
+          width: 26px;
+          height: 26px;
+        }
+        .ref-promo-bar {
+          background: #d9e9dd;
+          border-radius: 12px;
+          text-align: center;
+          padding: 12px;
+          font-size: 18px;
+          margin-bottom: 18px;
+        }
+        .ref-offer {
+          background: #fff;
+          border: 2px solid #dcdcdc;
+          border-radius: 12px;
+          padding: 20px 16px 14px;
+          position: relative;
+          margin-top: 18px;
+          display: grid;
+          grid-template-columns: auto 1fr auto auto;
+          align-items: center;
+          gap: 10px;
+          text-align: center;
+        }
+        .ref-offer.selected {
+          border-color: #66bb7a;
+        }
+        .ref-badge {
+          position: absolute;
+          top: -16px;
+          right: 50%;
+          transform: translateX(50%);
+          background: #66bb7a;
+          color: #12332a;
+          padding: 4px 16px;
+          border-radius: 4px;
+          font-size: 16px;
+          z-index: 1;
+        }
+        .ref-badge::before,
+        .ref-badge::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          border-style: solid;
+        }
+        .ref-badge::before {
+          right: 100%;
+          border-width: 0 12px 24px 0;
+          border-color: transparent #2e7d45 transparent transparent;
+        }
+        .ref-badge::after {
+          left: 100%;
+          border-width: 0 0 24px 12px;
+          border-color: transparent transparent transparent #2e7d45;
+        }
+        .ref-offer-name {
+          font-size: 19px;
+          font-weight: 600;
+          line-height: 1.5;
+        }
+        .ref-free-ship {
+          background: #cfcfcf;
+          border-radius: 999px;
+          padding: 8px 18px;
+          font-size: 16px;
+          color: #3a4656;
+        }
+        .ref-price {
+          font-size: 24px;
+          color: #2f3b4c;
+        }
+        .ref-price s {
+          display: block;
+          font-size: 16px;
+          color: #2f3b4c;
+        }
+        .ref-check {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          border: 3px solid #cfcfcf;
+          justify-self: end;
+          box-sizing: border-box;
+        }
+        .ref-check.active {
+          border: 8px solid #66bb7a;
+        }
+        .ref-submit {
+          background: #66bb7a;
+          color: #12332a;
+          border: none;
+          border-radius: 12px;
+          width: 100%;
+          padding: 18px;
+          font-size: 20px;
+          font-family: inherit;
+          margin-top: 20px;
+          cursor: pointer;
+        }
+        .ref-total {
+          display: flex;
+          justify-content: space-between;
+          font-size: 24px;
+          color: #66bb7a;
+          margin-top: 24px;
+        }
+      
