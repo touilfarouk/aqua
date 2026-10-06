@@ -25,19 +25,19 @@ const PageHome = {
                 <div class="ref-grid">
                   <div>
                     <div class="ref-label-sm">{{ L.latlng }}</div>
-                    <q-input v-model="form.pointA" :label="L.pointA" outlined bg-color="white" />
+                    <q-input class="coord-point-A" v-model="form.pointA" :label="L.pointA" outlined bg-color="white" />
                   </div>
                   <div>
                     <div class="ref-label-sm">{{ L.latlng }}</div>
-                    <q-input v-model="form.pointB" :label="L.pointB" outlined bg-color="white" />
+                    <q-input class="coord-point-B" v-model="form.pointB" :label="L.pointB" outlined bg-color="white" />
                   </div>
                   <div>
                     <div class="ref-label-sm">{{ L.latlng }}</div>
-                    <q-input v-model="form.pointC" :label="L.pointC" outlined bg-color="white" />
+                    <q-input class="coord-point-C" v-model="form.pointC" :label="L.pointC" outlined bg-color="white" />
                   </div>
                   <div>
                     <div class="ref-label-sm">{{ L.latlng }}</div>
-                    <q-input v-model="form.pointD" :label="L.pointD" outlined bg-color="white" />
+                    <q-input class="coord-point-D" v-model="form.pointD" :label="L.pointD" outlined bg-color="white" />
                   </div>
                 </div>
 

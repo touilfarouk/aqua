@@ -308,3 +308,8 @@ textarea.ref-input { resize: vertical; font-family: inherit; }
 .ref-card .q-field__native { caret-color: #00695c; }
 .ref-card .q-field--focused .q-field__label { color: #00695c !important; }
 .ref-card .q-field--focused .q-field__control:before { border-color: #00695c !important; }
+
+.coord-point-A .q-field__control { border-left: 3px solid #e53e3e; }
+.coord-point-B .q-field__control { border-left: 3px solid #38a169; }
+.coord-point-C .q-field__control { border-left: 3px solid #3182ce; }
+.coord-point-D .q-field__control { border-left: 3px solid #d69e2e; }
