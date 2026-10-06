@@ -1,0 +1,44 @@
+body {
+  font-family: 'Almarai', 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+.starter-page {
+  min-height: calc(100vh - 112px);
+  border: 1px dashed #b0bec5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #455a64;
+  background: #fafafa;
+}
+
+.map-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 50px);
+  position: relative;
+}
+
+.page-transition-container {
+  overflow-x: hidden;
+}
+
+.map-locate-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.aqua-map {
+  flex: 1;
+  min-height: 520px;
+  width: 100%;
+}
+
+.leaflet-control-layers-expanded {
+  border-radius: 8px;
+}
