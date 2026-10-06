@@ -285,3 +285,10 @@ body {
           margin-top: 24px;
         }
       
+
+.ref-label { display: block; margin: 0 0 8px; font-size: 15px; color: #2f3b4c; }
+.ref-label-sm { display: block; margin: 0 0 6px; font-size: 13px; color: #2f3b4c; }
+.ref-help { margin-top: 6px; font-size: 12px; color: #8a939e; text-align: center; }
+textarea.ref-input { resize: vertical; font-family: inherit; }
+
+.ref-form .ref-input { text-align: left; }

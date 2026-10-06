@@ -3,89 +3,101 @@ const PageHome = {
     <q-page>
 
 
-      <div class="ref-form">
-        <div class="ref-title">معلومات الزبون</div>
+      <div class="ref-form" style="direction: ltr; text-align: left;">
         <div class="ref-card">
+          <label class="ref-label">Format des coordonnées</label>
+          <div class="ref-select-wrap">
+            <select class="ref-input" v-model="form.format">
+              <option value="dms">Degrés, minutes, secondes (DMS)</option>
+              <option value="decimal">Degrés décimaux (DD)</option>
+              <option value="utm">Système de coordonnées universel (UTM)</option>
+            </select>
+          </div>
+
+          <label class="ref-label" style="margin-top: 18px;">Coordonnées géographiques</label>
           <div class="ref-grid">
-            <input class="ref-input" placeholder="الاسم الكامل" v-model="form.name">
-            <input class="ref-input" placeholder="الهاتف" v-model="form.phone">
-            <div class="ref-select-wrap">
-              <select class="ref-input" v-model="form.wilaya">
-                <option value="" selected disabled>الولاية</option>
-                <option>الجزائر</option>
-                <option>وهران</option>
-                <option>قسنطينة</option>
-              </select>
+            <div>
+              <label class="ref-label-sm">Point A (Nord-Ouest)</label>
+              <input class="ref-input" placeholder="36.7538 3.0588" v-model="form.pointA">
+              <div class="ref-help">Latitude Longitude</div>
             </div>
-            <div class="ref-select-wrap">
-              <select class="ref-input" v-model="form.baladiya">
-                <option value="" selected disabled>البلدية</option>
-                <option>بلدية 1</option>
-                <option>بلدية 2</option>
-              </select>
+            <div>
+              <label class="ref-label-sm">Point B (Nord-Est)</label>
+              <input class="ref-input" placeholder="36.7548 3.0598" v-model="form.pointB">
+              <div class="ref-help">Latitude Longitude</div>
+            </div>
+            <div>
+              <label class="ref-label-sm">Point C (Sud-Est)</label>
+              <input class="ref-input" placeholder="36.7528 3.0608" v-model="form.pointC">
+              <div class="ref-help">Latitude Longitude</div>
+            </div>
+            <div>
+              <label class="ref-label-sm">Point D (Sud-Ouest)</label>
+              <input class="ref-input" placeholder="36.7518 3.0578" v-model="form.pointD">
+              <div class="ref-help">Latitude Longitude</div>
             </div>
           </div>
 
-          <div class="ref-radios">
-            <label @click="form.delivery = 'office'">
-              توصيل للمكتب
-              <span class="ref-dot" :class="{ active: form.delivery === 'office' }"></span>
-            </label>
-            <label @click="form.delivery = 'home'">
-              توصيل للمنزل
-              <span class="ref-dot" :class="{ active: form.delivery === 'home' }"></span>
-            </label>
+          <div class="ref-grid" style="margin-top: 14px;">
+            <div>
+              <label class="ref-label">Wilaya</label>
+              <div class="ref-select-wrap">
+                <select class="ref-input" v-model="form.wilaya">
+                  <option value="" selected disabled>Sélectionner une wilaya</option>
+                  <option>Alger</option>
+                  <option>Oran</option>
+                  <option>Constantine</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="ref-label">Commune</label>
+              <div class="ref-select-wrap">
+                <select class="ref-input" v-model="form.commune">
+                  <option value="" selected disabled>Sélectionner une commune</option>
+                  <option>Commune 1</option>
+                  <option>Commune 2</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div class="ref-promo-bar">😍 العروض و الخصوم</div>
-
-          <div
-            class="ref-offer"
-            :class="{ selected: form.offer === 1 }"
-            @click="form.offer = 1"
-          >
-            <span class="ref-badge">OFF 22%-</span>
-            <div class="ref-check" :class="{ active: form.offer === 1 }"></div>
-            <div class="ref-offer-name">إشتري لون<br>واحد</div>
-            <div><span class="ref-free-ship">🚚 توصيل مجاني</span></div>
-            <div class="ref-price">دج2200<s>دج3800</s></div>
+          <div class="ref-grid" style="margin-top: 14px;">
+            <div>
+              <label class="ref-label">Superficie (m²)</label>
+              <input type="number" class="ref-input" placeholder="2500.00" v-model="form.superficie">
+            </div>
+            <div>
+              <label class="ref-label">Distance voie d'accès</label>
+              <input type="number" class="ref-input" placeholder="100" v-model="form.distance">
+            </div>
           </div>
 
-          <div
-            class="ref-offer"
-            :class="{ selected: form.offer === 2 }"
-            @click="form.offer = 2"
-          >
-            <span class="ref-badge">OFF 30%-</span>
-            <div class="ref-check" :class="{ active: form.offer === 2 }"></div>
-            <div class="ref-offer-name">اشتري لونين<br>مختلفين</div>
-            <div><span class="ref-free-ship">🚚 توصيل مجاني</span></div>
-            <div class="ref-price">دج4000<s>دج7600</s></div>
-          </div>
+          <label class="ref-label" style="margin-top: 14px;">Description</label>
+          <textarea class="ref-input" rows="3" placeholder="Description de la zone..." v-model="form.description"></textarea>
         </div>
 
-        <button class="ref-submit" @click="submit">أطلب الان</button>
-
-        <div class="ref-total">
-          <span>دج2200</span>
-          <span>مجموع</span>
-        </div>
+        <button class="ref-submit" @click="submit">Sauvegarder</button>
       </div>
     </q-page>
   `,
   setup() {
     const form = Vue.reactive({
-      name: '',
-      phone: '',
+      format: 'dms',
+      pointA: '',
+      pointB: '',
+      pointC: '',
+      pointD: '',
       wilaya: '',
-      baladiya: '',
-      delivery: 'office',
-      offer: 1
+      commune: '',
+      superficie: '',
+      distance: '',
+      description: ''
     });
 
     const submit = () => {
-      console.log('Sample form submitted:', { ...form });
-      Quasar.Notify.create({ message: 'تم إرسال الطلب', color: 'positive' });
+      console.log('Form submitted:', { ...form });
+      Quasar.Notify.create({ message: 'Sauvegardé', color: 'positive' });
     };
 
     return { form, submit };
