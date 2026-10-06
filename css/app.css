@@ -303,3 +303,8 @@ textarea.ref-input { resize: vertical; font-family: inherit; }
 .ref-card .q-field__control { padding: 14px 16px; border-radius: 10px; }
 .ref-card .q-field__label { color: #9aa3ad; }
 .ref-card .q-field--outlined .q-field__control:before { border-color: #e3e3e3; }
+
+.ref-label-sm { margin: 0 0 2px; }
+.ref-card .q-field__native { caret-color: #00695c; }
+.ref-card .q-field--focused .q-field__label { color: #00695c !important; }
+.ref-card .q-field--focused .q-field__control:before { border-color: #00695c !important; }
