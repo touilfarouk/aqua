@@ -299,3 +299,7 @@ textarea.ref-input { resize: vertical; font-family: inherit; }
 .ref-section-title { margin: 0 0 10px; font-size: 15px; color: #2f3b4c; }
 .ref-card .q-field__control { border-radius: 10px; }
 .ref-card .q-field__bottom { font-size: 12px; }
+
+.ref-card .q-field__control { padding: 14px 16px; border-radius: 10px; }
+.ref-card .q-field__label { color: #9aa3ad; }
+.ref-card .q-field--outlined .q-field__control:before { border-color: #e3e3e3; }

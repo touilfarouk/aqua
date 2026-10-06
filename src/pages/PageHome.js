@@ -17,16 +17,16 @@ const PageHome = {
                   :options="formatOptions"
                   emit-value
                   map-options
-                  outlined dense rounded bg-color="white"
+                  outlined bg-color="white"
                   class="q-mb-md"
                 />
 
                 <div class="ref-section-title">{{ L.coords }}</div>
                 <div class="ref-grid">
-                  <q-input v-model="form.pointA" :label="L.pointA" :hint="L.latlng" outlined dense rounded bg-color="white" />
-                  <q-input v-model="form.pointB" :label="L.pointB" :hint="L.latlng" outlined dense rounded bg-color="white" />
-                  <q-input v-model="form.pointC" :label="L.pointC" :hint="L.latlng" outlined dense rounded bg-color="white" />
-                  <q-input v-model="form.pointD" :label="L.pointD" :hint="L.latlng" outlined dense rounded bg-color="white" />
+                  <q-input v-model="form.pointA" :label="L.pointA" :hint="L.latlng" outlined bg-color="white" />
+                  <q-input v-model="form.pointB" :label="L.pointB" :hint="L.latlng" outlined bg-color="white" />
+                  <q-input v-model="form.pointC" :label="L.pointC" :hint="L.latlng" outlined bg-color="white" />
+                  <q-input v-model="form.pointD" :label="L.pointD" :hint="L.latlng" outlined bg-color="white" />
                 </div>
 
                 <div class="ref-grid q-mt-md">
@@ -34,19 +34,19 @@ const PageHome = {
                     v-model="form.wilaya"
                     :label="L.wilaya"
                     :options="['Alger', 'Oran', 'Constantine']"
-                    outlined dense rounded bg-color="white"
+                    outlined bg-color="white"
                   />
                   <q-select
                     v-model="form.commune"
                     :label="L.commune"
                     :options="['Commune 1', 'Commune 2']"
-                    outlined dense rounded bg-color="white"
+                    outlined bg-color="white"
                   />
                 </div>
 
                 <div class="ref-grid q-mt-md">
-                  <q-input v-model="form.superficie" :label="L.area" type="number" outlined dense rounded bg-color="white" />
-                  <q-input v-model="form.distance" :label="L.distance" type="number" outlined dense rounded bg-color="white" />
+                  <q-input v-model="form.superficie" :label="L.area" type="number" outlined bg-color="white" />
+                  <q-input v-model="form.distance" :label="L.distance" type="number" outlined bg-color="white" />
                 </div>
 
                 <q-input
@@ -54,7 +54,7 @@ const PageHome = {
                   :label="L.description"
                   type="textarea"
                   rows="3"
-                  outlined dense rounded bg-color="white"
+                  outlined bg-color="white"
                   class="q-mt-md"
                 />
 
