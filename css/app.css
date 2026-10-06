@@ -101,9 +101,8 @@ body {
 }
 
         .ref-form {
-          direction: rtl;
           font-family: 'Cairo', sans-serif;
-          max-width: 560px;
+          max-width: 100%; width: 100%;
           margin: 0 auto;
           padding: 16px;
           color: #2f3b4c;
@@ -129,7 +128,6 @@ body {
           border-radius: 10px;
           padding: 14px 16px;
           font-size: 16px;
-          text-align: right;
           color: #2f3b4c;
           width: 100%;
           box-sizing: border-box;
@@ -290,5 +288,8 @@ body {
 .ref-label-sm { display: block; margin: 0 0 6px; font-size: 13px; color: #2f3b4c; }
 .ref-help { margin-top: 6px; font-size: 12px; color: #8a939e; text-align: center; }
 textarea.ref-input { resize: vertical; font-family: inherit; }
+.ref-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+.ref-tab { flex: 1; padding: 12px; border: 2px solid #dcdcdc; background: #fff; border-radius: 10px; font-size: 17px; font-family: inherit; cursor: pointer; color: #2f3b4c; }
+.ref-tab.active { background: #66bb7a; border-color: #66bb7a; color: #12332a; font-weight: 600; }
 
-.ref-form .ref-input { text-align: left; }
+.ref-form[dir='ltr'] .ref-select-wrap::after { left: auto; right: 14px; }
