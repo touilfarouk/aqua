@@ -215,7 +215,16 @@ const PageHome = {
           maxZoom: 20,
           subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
-        map = window.L.map(container, { zoomControl: true, layers: [terrain] });
+        const satellite = window.L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+        map = window.L.map(container, { zoomControl: false, layers: [terrain] });
+        window.L.control.zoom({ position: 'topright' }).addTo(map);
+        window.L.control.layers({ Terrain: terrain, Satellite: satellite }, null, {
+          position: 'topright',
+          collapsed: false
+        }).addTo(map);
         map.fitBounds([[18.968147, -8.6845], [37.2962, 11.9994]]);
       });
     });
