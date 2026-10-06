@@ -7,85 +7,74 @@ const PageHome = {
           <button class="ref-tab" :class="{ active: lang === 'fr' }" @click="lang = 'fr'">Français</button>
         </div>
 
-        <div class="ref-card" style="display:flex; gap:16px; direction:ltr;">
-          <div class="ref-fields" :dir="lang === 'ar' ? 'rtl' : 'ltr'" style="flex:1 1 50%; min-width:0;">
-          <label class="ref-label">{{ L.format }}</label>
-          <div class="ref-select-wrap">
-            <select class="ref-input" v-model="form.format">
-              <option value="dms">{{ L.formatDms }}</option>
-              <option value="decimal">{{ L.formatDd }}</option>
-              <option value="utm">{{ L.formatUtm }}</option>
-            </select>
-          </div>
+        <q-card flat class="ref-card q-pa-md">
+          <div class="ref-split">
+            <div class="ref-fields" :dir="lang === 'ar' ? 'rtl' : 'ltr'">
+              <q-form @submit.prevent="submit">
+                <q-select
+                  v-model="form.format"
+                  :label="L.format"
+                  :options="formatOptions"
+                  emit-value
+                  map-options
+                  outlined dense rounded bg-color="white"
+                  class="q-mb-md"
+                />
 
-          <label class="ref-label" style="margin-top: 18px;">{{ L.coords }}</label>
-          <div class="ref-grid">
-            <div>
-              <label class="ref-label-sm">{{ L.pointA }}</label>
-              <input class="ref-input" placeholder="36.7538 3.0588" v-model="form.pointA">
-              <div class="ref-help">{{ L.latlng }}</div>
-            </div>
-            <div>
-              <label class="ref-label-sm">{{ L.pointB }}</label>
-              <input class="ref-input" placeholder="36.7548 3.0598" v-model="form.pointB">
-              <div class="ref-help">{{ L.latlng }}</div>
-            </div>
-            <div>
-              <label class="ref-label-sm">{{ L.pointC }}</label>
-              <input class="ref-input" placeholder="36.7528 3.0608" v-model="form.pointC">
-              <div class="ref-help">{{ L.latlng }}</div>
-            </div>
-            <div>
-              <label class="ref-label-sm">{{ L.pointD }}</label>
-              <input class="ref-input" placeholder="36.7518 3.0578" v-model="form.pointD">
-              <div class="ref-help">{{ L.latlng }}</div>
-            </div>
-          </div>
+                <div class="ref-section-title">{{ L.coords }}</div>
+                <div class="ref-grid">
+                  <q-input v-model="form.pointA" :label="L.pointA" :hint="L.latlng" outlined dense rounded bg-color="white" />
+                  <q-input v-model="form.pointB" :label="L.pointB" :hint="L.latlng" outlined dense rounded bg-color="white" />
+                  <q-input v-model="form.pointC" :label="L.pointC" :hint="L.latlng" outlined dense rounded bg-color="white" />
+                  <q-input v-model="form.pointD" :label="L.pointD" :hint="L.latlng" outlined dense rounded bg-color="white" />
+                </div>
 
-          <div class="ref-grid" style="margin-top: 14px;">
-            <div>
-              <label class="ref-label">{{ L.wilaya }}</label>
-              <div class="ref-select-wrap">
-                <select class="ref-input" v-model="form.wilaya">
-                  <option value="" selected disabled>{{ L.wilayaPh }}</option>
-                  <option>Alger</option>
-                  <option>Oran</option>
-                  <option>Constantine</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="ref-label">{{ L.commune }}</label>
-              <div class="ref-select-wrap">
-                <select class="ref-input" v-model="form.commune">
-                  <option value="" selected disabled>{{ L.communePh }}</option>
-                  <option>Commune 1</option>
-                  <option>Commune 2</option>
-                </select>
-              </div>
-            </div>
-          </div>
+                <div class="ref-grid q-mt-md">
+                  <q-select
+                    v-model="form.wilaya"
+                    :label="L.wilaya"
+                    :options="['Alger', 'Oran', 'Constantine']"
+                    outlined dense rounded bg-color="white"
+                  />
+                  <q-select
+                    v-model="form.commune"
+                    :label="L.commune"
+                    :options="['Commune 1', 'Commune 2']"
+                    outlined dense rounded bg-color="white"
+                  />
+                </div>
 
-          <div class="ref-grid" style="margin-top: 14px;">
-            <div>
-              <label class="ref-label">{{ L.area }}</label>
-              <input type="number" class="ref-input" placeholder="2500.00" v-model="form.superficie">
-            </div>
-            <div>
-              <label class="ref-label">{{ L.distance }}</label>
-              <input type="number" class="ref-input" placeholder="100" v-model="form.distance">
-            </div>
-          </div>
+                <div class="ref-grid q-mt-md">
+                  <q-input v-model="form.superficie" :label="L.area" type="number" outlined dense rounded bg-color="white" />
+                  <q-input v-model="form.distance" :label="L.distance" type="number" outlined dense rounded bg-color="white" />
+                </div>
 
-          <label class="ref-label" style="margin-top: 14px;">{{ L.description }}</label>
-          <textarea class="ref-input" rows="3" :placeholder="L.descriptionPh" v-model="form.description"></textarea>
-          </div>
-          <div class="ref-map-wrap" style="flex:1 1 50%; min-height:480px; border-radius:10px; overflow:hidden;">
-            <div id="home-map" style="width:100%; height:100%; min-height:480px;"></div>
-          </div>
-        </div>
+                <q-input
+                  v-model="form.description"
+                  :label="L.description"
+                  type="textarea"
+                  rows="3"
+                  outlined dense rounded bg-color="white"
+                  class="q-mt-md"
+                />
 
-        <button class="ref-submit" @click="submit">{{ L.save }}</button>
+                <q-btn
+                  type="submit"
+                  :label="L.save"
+                  color="primary"
+                  unelevated
+                  no-caps
+                  size="lg"
+                  class="full-width q-mt-md text-h6"
+                />
+              </q-form>
+            </div>
+
+            <div class="ref-map-wrap">
+              <div id="home-map" style="width:100%; height:100%; min-height:480px;"></div>
+            </div>
+          </div>
+        </q-card>
       </div>
     </q-page>
   `,
@@ -95,9 +84,6 @@ const PageHome = {
     const labels = {
       fr: {
         format: 'Format des coordonnées',
-        formatDms: 'Degrés, minutes, secondes (DMS)',
-        formatDd: 'Degrés décimaux (DD)',
-        formatUtm: 'Système de coordonnées universel (UTM)',
         coords: 'Coordonnées géographiques',
         pointA: 'Point A (Nord-Ouest)',
         pointB: 'Point B (Nord-Est)',
@@ -105,20 +91,14 @@ const PageHome = {
         pointD: 'Point D (Sud-Ouest)',
         latlng: 'Latitude Longitude',
         wilaya: 'Wilaya',
-        wilayaPh: 'Sélectionner une wilaya',
         commune: 'Commune',
-        communePh: 'Sélectionner une commune',
         area: 'Superficie (m²)',
         distance: "Distance voie d'accès",
         description: 'Description',
-        descriptionPh: 'Description de la zone...',
         save: 'Sauvegarder'
       },
       ar: {
         format: 'صيغة الإحداثيات',
-        formatDms: 'درجات، دقائق، ثوانٍ (DMS)',
-        formatDd: 'درجات عشرية (DD)',
-        formatUtm: 'نظام الإحداثيات العالمي (UTM)',
         coords: 'الإحداثيات الجغرافية',
         pointA: 'النقطة أ (شمال غرب)',
         pointB: 'النقطة ب (شمال شرق)',
@@ -126,13 +106,10 @@ const PageHome = {
         pointD: 'النقطة د (جنوب غرب)',
         latlng: 'خط العرض خط الطول',
         wilaya: 'الولاية',
-        wilayaPh: 'اختر الولاية',
         commune: 'البلدية',
-        communePh: 'اختر البلدية',
         area: 'المساحة (م²)',
         distance: 'المسافة عن طريق الوصول',
         description: 'الوصف',
-        descriptionPh: 'وصف المنطقة...',
         save: 'حفظ'
       }
     };
@@ -152,6 +129,20 @@ const PageHome = {
       description: ''
     });
 
+    const formatOptions = Vue.computed(() =>
+      lang.value === 'ar'
+        ? [
+            { label: 'درجات، دقائق، ثوانٍ (DMS)', value: 'dms' },
+            { label: 'درجات عشرية (DD)', value: 'decimal' },
+            { label: 'نظام الإحداثيات العالمي (UTM)', value: 'utm' }
+          ]
+        : [
+            { label: 'Degrés, minutes, secondes (DMS)', value: 'dms' },
+            { label: 'Degrés décimaux (DD)', value: 'decimal' },
+            { label: 'Système de coordonnées universel (UTM)', value: 'utm' }
+          ]
+    );
+
     const submit = () => {
       console.log('Form submitted:', { ...form });
       Quasar.Notify.create({ message: lang.value === 'ar' ? 'تم الحفظ' : 'Sauvegardé', color: 'positive' });
@@ -162,7 +153,6 @@ const PageHome = {
     let markers = {};
     let polygon = null;
     const pointKeys = ['pointA', 'pointB', 'pointC', 'pointD'];
-    const pointLabels = { pointA: 'A', pointB: 'B', pointC: 'C', pointD: 'D' };
 
     const parsePoint = (value) => {
       if (!value) return null;
@@ -236,7 +226,7 @@ const PageHome = {
       }
     });
 
-    return { form, submit, lang, L };
+    return { form, submit, lang, L, formatOptions };
   }
 };
 

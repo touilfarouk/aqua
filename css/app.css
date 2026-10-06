@@ -292,3 +292,10 @@ textarea.ref-input { resize: vertical; font-family: inherit; }
 .ref-tab.active { color: #00695c; font-weight: 700; border-bottom: 3px solid #00695c; background: transparent; }
 
 .ref-form[dir='ltr'] .ref-select-wrap::after { left: auto; right: 14px; }
+
+.ref-split { display: flex; gap: 16px; direction: ltr; }
+.ref-fields { flex: 1 1 50%; min-width: 0; }
+.ref-map-wrap { flex: 1 1 50%; min-height: 480px; border-radius: 10px; overflow: hidden; }
+.ref-section-title { margin: 0 0 10px; font-size: 15px; color: #2f3b4c; }
+.ref-card .q-field__control { border-radius: 10px; }
+.ref-card .q-field__bottom { font-size: 12px; }
