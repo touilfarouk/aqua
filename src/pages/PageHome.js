@@ -7,7 +7,8 @@ const PageHome = {
           <button class="ref-tab" :class="{ active: lang === 'fr' }" @click="lang = 'fr'">Français</button>
         </div>
 
-        <div class="ref-card">
+        <div class="ref-card" style="display:flex; gap:16px; direction:ltr;">
+          <div class="ref-fields" :dir="lang === 'ar' ? 'rtl' : 'ltr'" style="flex:1 1 50%; min-width:0;">
           <label class="ref-label">{{ L.format }}</label>
           <div class="ref-select-wrap">
             <select class="ref-input" v-model="form.format">
@@ -78,6 +79,10 @@ const PageHome = {
 
           <label class="ref-label" style="margin-top: 14px;">{{ L.description }}</label>
           <textarea class="ref-input" rows="3" :placeholder="L.descriptionPh" v-model="form.description"></textarea>
+          </div>
+          <div class="ref-map-wrap" style="flex:1 1 50%; min-height:480px; border-radius:10px; overflow:hidden;">
+            <div id="home-map" style="width:100%; height:100%; min-height:480px;"></div>
+          </div>
         </div>
 
         <button class="ref-submit" @click="submit">{{ L.save }}</button>
@@ -150,7 +155,77 @@ const PageHome = {
     const submit = () => {
       console.log('Form submitted:', { ...form });
       Quasar.Notify.create({ message: lang.value === 'ar' ? 'تم الحفظ' : 'Sauvegardé', color: 'positive' });
+      updateMarkers(true);
     };
+
+    let map = null;
+    let markers = {};
+    let polygon = null;
+    const pointKeys = ['pointA', 'pointB', 'pointC', 'pointD'];
+    const pointLabels = { pointA: 'A', pointB: 'B', pointC: 'C', pointD: 'D' };
+
+    const parsePoint = (value) => {
+      if (!value) return null;
+      const parts = String(value).trim().split(/[\s,;]+/).map(Number);
+      if (parts.length >= 2 && !parts.slice(0, 2).some(isNaN)) {
+        return [parts[0], parts[1]];
+      }
+      return null;
+    };
+
+    const updateMarkers = (fit = false) => {
+      if (!map || !window.L) return;
+      const bounds = [];
+      pointKeys.forEach((key) => {
+        const latlng = parsePoint(form[key]);
+        if (latlng) {
+          if (!markers[key]) {
+            markers[key] = window.L.marker(latlng).addTo(map).bindPopup(key);
+          } else {
+            markers[key].setLatLng(latlng);
+          }
+          bounds.push(latlng);
+        } else if (markers[key]) {
+          map.removeLayer(markers[key]);
+          delete markers[key];
+        }
+      });
+      if (polygon) {
+        map.removeLayer(polygon);
+        polygon = null;
+      }
+      if (bounds.length === 4) {
+        polygon = window.L.polygon(bounds, { color: '#00695c' }).addTo(map);
+      }
+      if (fit && bounds.length) {
+        map.fitBounds(window.L.latLngBounds(bounds).pad(0.3));
+      }
+    };
+
+    Vue.watch(
+      () => [form.pointA, form.pointB, form.pointC, form.pointD],
+      () => updateMarkers(false)
+    );
+
+    Vue.onMounted(() => {
+      Vue.nextTick(() => {
+        const container = document.getElementById('home-map');
+        if (!container || !window.L || map) return;
+        const terrain = window.L.tileLayer('https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+        map = window.L.map(container, { zoomControl: true, layers: [terrain] });
+        map.fitBounds([[18.968147, -8.6845], [37.2962, 11.9994]]);
+      });
+    });
+
+    Vue.onBeforeUnmount(() => {
+      if (map) {
+        map.remove();
+        map = null;
+      }
+    });
 
     return { form, submit, lang, L };
   }
