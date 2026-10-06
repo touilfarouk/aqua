@@ -287,8 +287,8 @@ body {
 .ref-label-sm { display: block; margin: 0 0 6px; font-size: 13px; color: #2f3b4c; }
 .ref-help { margin-top: 6px; font-size: 12px; color: #8a939e; text-align: center; }
 textarea.ref-input { resize: vertical; font-family: inherit; }
-.ref-tabs { display: flex; gap: 24px; margin-bottom: 14px; border-bottom: 2px solid #dcdcdc; }
-.ref-tab { padding: 10px 4px; border: none; background: transparent; font-size: 17px; font-family: inherit; cursor: pointer; color: #8a939e; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.ref-tabs { display: flex; gap: 24px; margin-bottom: 14px; justify-content: flex-end; direction: ltr; border-bottom: 2px solid #dcdcdc; }
+.ref-tab { padding: 10px 8px; border: none; background: transparent; font-size: 17px; font-family: inherit; cursor: pointer; color: #8a939e; border-bottom: 3px solid transparent; margin-bottom: -2px; }
 .ref-tab.active { color: #00695c; font-weight: 700; border-bottom: 3px solid #00695c; background: transparent; }
 
 .ref-form[dir='ltr'] .ref-select-wrap::after { left: auto; right: 14px; }
