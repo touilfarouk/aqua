@@ -70,15 +70,17 @@ const PageHome = {
                   class="q-mt-md"
                 />
 
-                <q-btn
-                  type="submit"
-                  :label="L.save"
-                  color="primary"
-                  unelevated
-                  no-caps
-                  size="lg"
-                  class="full-width q-mt-md text-h6"
-                />
+                <div class="row q-col-gutter-sm q-mt-md">
+                  <div class="col">
+                    <q-btn type="submit" :label="L.save" color="primary" unelevated no-caps size="lg" class="full-width text-h6" />
+                  </div>
+                  <div class="col">
+                    <q-btn :label="L.reset" color="warning" unelevated no-caps size="lg" class="full-width text-h6" @click="resetForm" />
+                  </div>
+                  <div class="col">
+                    <q-btn :label="L.cancel" color="negative" unelevated no-caps size="lg" class="full-width text-h6" @click="cancelForm" />
+                  </div>
+                </div>
               </q-form>
             </div>
 
@@ -107,7 +109,9 @@ const PageHome = {
         area: 'Superficie (m²)',
         distance: "Distance voie d'accès",
         description: 'Description',
-        save: 'Sauvegarder'
+        save: 'Sauvegarder',
+        reset: 'Réinitialiser',
+        cancel: 'Annuler'
       },
       ar: {
         format: 'صيغة الإحداثيات',
@@ -122,7 +126,9 @@ const PageHome = {
         area: 'المساحة (م²)',
         distance: 'المسافة عن طريق الوصول',
         description: 'الوصف',
-        save: 'حفظ'
+        save: 'حفظ',
+        reset: 'إعادة تعيين',
+        cancel: 'إلغاء'
       }
     };
 
@@ -157,8 +163,28 @@ const PageHome = {
 
     const submit = () => {
       console.log('Form submitted:', { ...form });
-      Quasar.Notify.create({ message: lang.value === 'ar' ? 'تم الحفظ' : 'Sauvegardé', color: 'positive' });
+      // Save to localStorage before sending to the server
+      try {
+        const drafts = JSON.parse(localStorage.getItem('concessionDrafts') || '[]');
+        drafts.push({ ...form, savedAt: new Date().toISOString() });
+        localStorage.setItem('concessionDrafts', JSON.stringify(drafts));
+        console.log('Saved to localStorage:', drafts);
+      } catch (e) {
+        console.error('Failed to save to localStorage:', e);
+      }
+      Quasar.Notify.create({ message: lang.value === 'ar' ? 'تم الحفظ محلياً' : 'Enregistré localement', color: 'positive' });
       updateMarkers(true);
+    };
+
+    const resetForm = () => {
+      Object.keys(form).forEach((k) => (form[k] = k === 'format' ? 'dms' : ''));
+      updateMarkers(false);
+      Quasar.Notify.create({ message: lang.value === 'ar' ? 'تمت إعادة التعيين' : 'Réinitialisé', color: 'warning' });
+    };
+
+    const cancelForm = () => {
+      resetForm();
+      Quasar.Notify.create({ message: lang.value === 'ar' ? 'تم الإلغاء' : 'Annulé', color: 'negative' });
     };
 
     let map = null;
@@ -238,7 +264,7 @@ const PageHome = {
       }
     });
 
-    return { form, submit, lang, L, formatOptions };
+    return { form, submit, resetForm, cancelForm, lang, L, formatOptions };
   }
 };
 
