@@ -10,14 +10,14 @@ console.log('Loading i18n module...');
   const listeners = new Set();
 
   const getBasePath = () => {
-    const isGitHubPages = window.location.hostname === 'touilfarouk.github.io';
-    const isTulipsesPath = window.location.pathname.includes('/tulipses/');
-    return (isGitHubPages || isTulipsesPath) ? '/tulipses/' : '/';
+    // Always resolve relative to the current folder so the app works
+    // under any static server root (e.g. VS Code Live Server at /)
+    return '/';
   };
 
   const getDictionaryUrl = (lang) => {
     const version = window.APP_VERSION || Date.now();
-    return `${getBasePath()}data/i18n.${lang}.json?v=${version}`;
+    return `data/i18n.${lang}.json?v=${version}`;
   };
 
   const loadDictionary = async (lang) => {

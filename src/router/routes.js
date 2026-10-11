@@ -16,6 +16,11 @@ const routes = [
     ]
   },
   {
+    path: '/login',
+    name: 'login',
+    component: window.PageLogin
+  },
+  {
     path: '/:catchAll(.*)*',
     name: 'not-found',
     component: {
@@ -27,11 +32,24 @@ const routes = [
 export default routes;
 
 export function createAppRouter(basePath = '/aqua/') {
-  return createRouter({
+  const router = createRouter({
     history: createWebHashHistory(basePath),
     routes,
     scrollBehavior() {
       return { top: 0 };
     }
   });
+
+  router.beforeEach((to) => {
+    const token = localStorage.getItem('aqua_token');
+    if (to.name !== 'login' && !token) {
+      return { name: 'login' };
+    }
+    if (to.name === 'login' && token) {
+      return { path: '/' };
+    }
+    return true;
+  });
+
+  return router;
 }

@@ -17,6 +17,11 @@ const MainLayout = {
             <q-route-tab to="/" exact label="Home" icon="home" />
             <q-route-tab to="/map" label="Map" icon="map" />
           </q-tabs>
+          <q-space />
+          <div v-if="username" class="text-white q-mr-md">
+            <q-icon name="person" class="q-mr-xs" />{{ username }} <span class="text-caption">({{ role }})</span>
+          </div>
+          <q-btn v-if="username" flat dense round icon="logout" aria-label="Logout" @click="logout" />
         </q-toolbar>
       </q-header>
 
@@ -85,11 +90,26 @@ const MainLayout = {
       }
     };
 
+    const username = Vue.ref(localStorage.getItem('aqua_username') || '');
+    const role = Vue.ref(localStorage.getItem('aqua_role') || '');
+
+    const logout = () => {
+      localStorage.removeItem('aqua_token');
+      localStorage.removeItem('aqua_role');
+      localStorage.removeItem('aqua_username');
+      username.value = '';
+      role.value = '';
+      router.push('/login');
+    };
+
     return {
       drawerOpen,
       activePath,
       transitionName,
-      navigateTo
+      navigateTo,
+      username,
+      role,
+      logout
     };
   }
 };

@@ -287,7 +287,34 @@ body {
 .ref-label-sm { display: block; margin: 0 0 6px; font-size: 13px; color: #2f3b4c; }
 .ref-help { margin-top: 6px; font-size: 12px; color: #8a939e; text-align: center; }
 textarea.ref-input { resize: vertical; font-family: inherit; }
-.ref-tabs { display: flex; gap: 24px; margin-bottom: 14px; justify-content: flex-end; direction: ltr; border-bottom: 2px solid #dcdcdc; }
+.ref-tabs { display: flex; gap: 24px; margin-bottom: 14px; justify-content: space-between; align-items: flex-end; direction: ltr; border-bottom: 2px solid #dcdcdc; }
+.ref-schedule { display: flex; gap: 10px; margin-bottom: 10px; }
+.ref-schedule-input { width: 190px; }
+.ref-schedule-input input { cursor: pointer !important; pointer-events: none; }
+
+.login-page { min-height: 100vh; background: #f5f7f7; }
+.login-card { width: 380px; max-width: 92vw; }
+
+/* Mobile responsiveness */
+@media (max-width: 1023px) {
+  .ref-split { flex-direction: column; }
+  .ref-fields, .ref-map-wrap { flex: 1 1 100%; }
+  .ref-map-wrap { min-height: 360px; }
+}
+
+@media (max-width: 599px) {
+  .ref-tabs { flex-wrap: wrap; gap: 8px; align-items: center; }
+  .ref-schedule { flex-wrap: wrap; width: 100%; }
+  .ref-schedule-input { width: 100%; flex: 1 1 100%; }
+  .ref-grid { grid-template-columns: 1fr !important; gap: 12px; }
+  .q-stepper__header { flex-direction: column; }
+  .q-stepper__tab { width: 100%; justify-content: flex-start; }
+  .q-card .row.q-col-gutter-sm > [class*='col'] { flex: 0 0 100%; max-width: 100%; }
+  #home-map { min-height: 320px !important; }
+  .map-page { min-height: calc(100vh - 50px); }
+}
+
+
 .ref-tab { padding: 10px 8px; border: none; background: transparent; font-size: 17px; font-family: inherit; cursor: pointer; color: #8a939e; border-bottom: 3px solid transparent; margin-bottom: -2px; }
 .ref-tab.active { color: #00695c; font-weight: 700; border-bottom: 3px solid #00695c; background: transparent; }
 
@@ -313,3 +340,37 @@ textarea.ref-input { resize: vertical; font-family: inherit; }
 .coord-point-B .q-field__control { box-shadow: inset 3px 0 0 #38a169; }
 .coord-point-C .q-field__control { box-shadow: inset 3px 0 0 #3182ce; }
 .coord-point-D .q-field__control { box-shadow: inset 3px 0 0 #d69e2e; }
+
+/* RTL: right-align Arabic labels/placeholders/inputs */
+.ref-fields[dir='rtl'] .q-field__label,
+.ref-fields[dir='rtl'] .q-field__native,
+.ref-fields[dir='rtl'] .q-field__input,
+.ref-fields[dir='rtl'] .q-field__native::placeholder,
+.ref-fields[dir='rtl'] input,
+.ref-fields[dir='rtl'] input::placeholder,
+.ref-fields[dir='rtl'] textarea,
+.ref-fields[dir='rtl'] textarea::placeholder {
+  text-align: right !important;
+  direction: rtl !important;
+}
+.ref-fields[dir='rtl'] .q-field__label {
+  left: auto !important;
+  right: 12px !important;
+  transform-origin: top right !important;
+}
+.ref-fields[dir='rtl'] .q-field__control {
+  direction: rtl;
+}
+.ref-fields[dir='rtl'] .q-field__prepend,
+.ref-fields[dir='rtl'] .q-field__append {
+  order: 2;
+}
+
+/* Stepper header: hide the thin connector lines */
+.q-stepper--horizontal .q-stepper__line::before,
+.q-stepper--horizontal .q-stepper__line::after,
+.q-stepper--horizontal .q-stepper__dot::before,
+.q-stepper--horizontal .q-stepper__dot::after,
+.q-stepper--horizontal .q-stepper__label::after {
+  display: none !important;
+}

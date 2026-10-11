@@ -31,3 +31,6 @@ yarn-error.log*
 
 # local .env files
 .env.local*
+
+# local database dumps (contain credentials)
+aquacole.sql

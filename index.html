@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.json">
   <link href="css/quasar.prod.css" rel="stylesheet">
   <link href="css/fonts.css" rel="stylesheet">
-  <link href="css/app.css?v=2" rel="stylesheet">
+  <link href="css/app.css?v=17" rel="stylesheet">
   <link href="css/transitions.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -51,7 +51,8 @@
     const components = [
       { name: 'MainLayout', path: './src/layouts/MainLayout.js?v=' + Date.now() },
       { name: 'PageHome', path: './src/pages/PageHome.js?v=' + Date.now() },
-      { name: 'PageMap', path: './src/pages/PageMap.js?v=' + Date.now() }
+      { name: 'PageMap', path: './src/pages/PageMap.js?v=' + Date.now() },
+      { name: 'PageLogin', path: './src/pages/PageLogin.js?v=' + Date.now() }
     ];
 
     function loadComponent(component) {
