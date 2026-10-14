@@ -9,7 +9,8 @@ Installing this extension pack:
    and [`tobermory.es6-string-html`](https://marketplace.visualstudio.com/items?itemName=tobermory.es6-string-html).
 2. Contributes the highlight rules as defaults via `configurationDefaults`.
 
-The distributable file is **`aqua-quasar-highlight-1.0.0.vsix`**.
+The distributable file is **`aqua-quasar-highlight-1.0.0.vsix`**, hosted in the
+`aqua` repo at `https://github.com/touilfarouk/aqua/tree/main/tools/aqua-quasar-highlight`.
 
 ## Install (one click)
 
@@ -70,13 +71,28 @@ Expected output:
 aqua.aqua-quasar-highlight
 ```
 
-## Install on another machine
+## Install it on another machine
 
-1. Copy `aqua-quasar-highlight-1.0.0.vsix` there (USB, OneDrive, email — it is ~4 KB).
-2. Run the same `code --install-extension "<path>.vsix"` command.
-3. Reload the window.
+The `.vsix` is also hosted in the `aqua` repo:
+`https://github.com/touilfarouk/aqua/blob/main/tools/aqua-quasar-highlight/aqua-quasar-highlight-1.0.0.vsix`
 
-No `.vscode` folder or settings editing is required.
+**If the repo is public:**
+
+```powershell
+iwr "https://github.com/touilfarouk/aqua/raw/main/tools/aqua-quasar-highlight/aqua-quasar-highlight-1.0.0.vsix" -OutFile "$env:TEMP\aqua-quasar-highlight-1.0.0.vsix"
+code --install-extension "$env:TEMP\aqua-quasar-highlight-1.0.0.vsix"
+```
+
+**If the repo is private** (raw links need auth), clone over SSH and install from disk:
+
+```powershell
+git clone --depth 1 git@github.com:touilfarouk/aqua.git
+code --install-extension ".\aqua\tools\aqua-quasar-highlight\aqua-quasar-highlight-1.0.0.vsix"
+```
+
+Then **Developer: Reload Window**.
+
+No `.vscode` folder or settings editing is required on the target machine.
 
 ## Useful commands
 
