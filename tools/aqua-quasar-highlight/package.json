@@ -1,0 +1,404 @@
+{
+  "name": "aqua-quasar-highlight",
+  "displayName": "Aqua Quasar Highlight",
+  "description": "Vue directive & attribute coloring inside Quasar no-build JS template literals. Bundles the required extensions and their highlight rules as defaults.",
+  "version": "1.0.0",
+  "publisher": "aqua",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Extension Packs",
+    "Other"
+  ],
+  "keywords": [
+    "vue",
+    "quasar",
+    "highlight",
+    "directives",
+    "no-build"
+  ],
+  "extensionPack": [
+    "simonhe.vscode-highlight-text",
+    "tobermory.es6-string-html"
+  ],
+  "contributes": {
+    "configurationDefaults": {
+      "vscode-highlight-text.rules": {
+        "javascript|typescript": {
+          "light": {
+            "#AF00DB": {
+              "match": [
+                "v-[a-zA-Z][a-zA-Z0-9-]*"
+              ]
+            },
+            "#0070C1": {
+              "match": [
+                ":([a-zA-Z][a-zA-Z0-9-]*)="
+              ],
+              "colors": [
+                "#0070C1"
+              ]
+            },
+            "#795E26": {
+              "match": [
+                "@[a-zA-Z][a-zA-Z0-9-]*"
+              ]
+            },
+            "#267F99": {
+              "match": [
+                "\\s(label)="
+              ],
+              "colors": [
+                "#267F99"
+              ]
+            },
+            "#098658": {
+              "match": [
+                "\\s(class)="
+              ],
+              "colors": [
+                "#098658"
+              ]
+            },
+            "#A31515": {
+              "match": [
+                "\\{\\{[^{}]*\\}\\}"
+              ]
+            },
+            "#951818": {
+              "match": [
+                "\\s(color)="
+              ],
+              "colors": [
+                "#951818"
+              ]
+            },
+            "#954218": {
+              "match": [
+                "\\s(icon)="
+              ],
+              "colors": [
+                "#954218"
+              ]
+            },
+            "#956c18": {
+              "match": [
+                "\\s(type)="
+              ],
+              "colors": [
+                "#956c18"
+              ]
+            },
+            "#959518": {
+              "match": [
+                "\\s(dir)="
+              ],
+              "colors": [
+                "#959518"
+              ]
+            },
+            "#6c9518": {
+              "match": [
+                "\\s(style)="
+              ],
+              "colors": [
+                "#6c9518"
+              ]
+            },
+            "#429518": {
+              "match": [
+                "\\s(align)="
+              ],
+              "colors": [
+                "#429518"
+              ]
+            },
+            "#189518": {
+              "match": [
+                "\\s(row-key)="
+              ],
+              "colors": [
+                "#189518"
+              ]
+            },
+            "#189542": {
+              "match": [
+                "\\s(no-data-label)="
+              ],
+              "colors": [
+                "#189542"
+              ]
+            },
+            "#18956c": {
+              "match": [
+                "\\s(flat)\\b"
+              ],
+              "colors": [
+                "#18956c"
+              ]
+            },
+            "#189595": {
+              "match": [
+                "\\s(bordered)\\b"
+              ],
+              "colors": [
+                "#189595"
+              ]
+            },
+            "#186c95": {
+              "match": [
+                "\\s(round)\\b"
+              ],
+              "colors": [
+                "#186c95"
+              ]
+            },
+            "#184295": {
+              "match": [
+                "\\s(dense)\\b"
+              ],
+              "colors": [
+                "#184295"
+              ]
+            },
+            "#181895": {
+              "match": [
+                "\\s(outlined)\\b"
+              ],
+              "colors": [
+                "#181895"
+              ]
+            },
+            "#421895": {
+              "match": [
+                "\\s(emit-value)\\b"
+              ],
+              "colors": [
+                "#421895"
+              ]
+            },
+            "#6c1895": {
+              "match": [
+                "\\s(map-options)\\b"
+              ],
+              "colors": [
+                "#6c1895"
+              ]
+            },
+            "#951895": {
+              "match": [
+                "\\s(multiple)\\b"
+              ],
+              "colors": [
+                "#951895"
+              ]
+            },
+            "#95186c": {
+              "match": [
+                "\\s(use-chips)\\b"
+              ],
+              "colors": [
+                "#95186c"
+              ]
+            },
+            "#951842": {
+              "match": [
+                "\\s(persistent)\\b"
+              ],
+              "colors": [
+                "#951842"
+              ]
+            }
+          },
+          "dark": {
+            "#C586C0": {
+              "match": [
+                "v-[a-zA-Z][a-zA-Z0-9-]*"
+              ]
+            },
+            "#4FC1FF": {
+              "match": [
+                ":([a-zA-Z][a-zA-Z0-9-]*)="
+              ],
+              "colors": [
+                "#4FC1FF"
+              ]
+            },
+            "#DCDCAA": {
+              "match": [
+                "@[a-zA-Z][a-zA-Z0-9-]*"
+              ]
+            },
+            "#4EC9B0": {
+              "match": [
+                "\\s(label)="
+              ],
+              "colors": [
+                "#4EC9B0"
+              ]
+            },
+            "#B5CEA8": {
+              "match": [
+                "\\s(class)="
+              ],
+              "colors": [
+                "#B5CEA8"
+              ]
+            },
+            "#CE9178": {
+              "match": [
+                "\\{\\{[^{}]*\\}\\}"
+              ]
+            },
+            "#ec8d8d": {
+              "match": [
+                "\\s(color)="
+              ],
+              "colors": [
+                "#ec8d8d"
+              ]
+            },
+            "#ecad8d": {
+              "match": [
+                "\\s(icon)="
+              ],
+              "colors": [
+                "#ecad8d"
+              ]
+            },
+            "#eccd8d": {
+              "match": [
+                "\\s(type)="
+              ],
+              "colors": [
+                "#eccd8d"
+              ]
+            },
+            "#ecec8d": {
+              "match": [
+                "\\s(dir)="
+              ],
+              "colors": [
+                "#ecec8d"
+              ]
+            },
+            "#cdec8d": {
+              "match": [
+                "\\s(style)="
+              ],
+              "colors": [
+                "#cdec8d"
+              ]
+            },
+            "#adec8d": {
+              "match": [
+                "\\s(align)="
+              ],
+              "colors": [
+                "#adec8d"
+              ]
+            },
+            "#8dec8d": {
+              "match": [
+                "\\s(row-key)="
+              ],
+              "colors": [
+                "#8dec8d"
+              ]
+            },
+            "#8decad": {
+              "match": [
+                "\\s(no-data-label)="
+              ],
+              "colors": [
+                "#8decad"
+              ]
+            },
+            "#8deccd": {
+              "match": [
+                "\\s(flat)\\b"
+              ],
+              "colors": [
+                "#8deccd"
+              ]
+            },
+            "#8decec": {
+              "match": [
+                "\\s(bordered)\\b"
+              ],
+              "colors": [
+                "#8decec"
+              ]
+            },
+            "#8dcdec": {
+              "match": [
+                "\\s(round)\\b"
+              ],
+              "colors": [
+                "#8dcdec"
+              ]
+            },
+            "#8dadec": {
+              "match": [
+                "\\s(dense)\\b"
+              ],
+              "colors": [
+                "#8dadec"
+              ]
+            },
+            "#8d8dec": {
+              "match": [
+                "\\s(outlined)\\b"
+              ],
+              "colors": [
+                "#8d8dec"
+              ]
+            },
+            "#ad8dec": {
+              "match": [
+                "\\s(emit-value)\\b"
+              ],
+              "colors": [
+                "#ad8dec"
+              ]
+            },
+            "#cd8dec": {
+              "match": [
+                "\\s(map-options)\\b"
+              ],
+              "colors": [
+                "#cd8dec"
+              ]
+            },
+            "#ec8dec": {
+              "match": [
+                "\\s(multiple)\\b"
+              ],
+              "colors": [
+                "#ec8dec"
+              ]
+            },
+            "#ec8dcd": {
+              "match": [
+                "\\s(use-chips)\\b"
+              ],
+              "colors": [
+                "#ec8dcd"
+              ]
+            },
+            "#ec8dad": {
+              "match": [
+                "\\s(persistent)\\b"
+              ],
+              "colors": [
+                "#ec8dad"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
